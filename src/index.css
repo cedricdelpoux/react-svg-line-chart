@@ -1,0 +1,36 @@
+.linechart-withPadding {
+  padding: .625rem .625rem 0 0;
+}
+
+.linechart_grid {
+  stroke: #000;
+  stroke-width: 1;
+  opacity: .2;
+}
+
+.linechart_axis {
+  stroke: #bdc3c7;
+}
+
+.linechart_area {
+  fill: #2ecc71;
+  stroke: none;
+  opacity: .4;
+}
+
+.linechart_path {
+  stroke: #27ae60;
+  stroke-width: 2;
+  fill: none;
+}
+
+.linechart_point {
+  fill: #fff;
+  stroke: #27ae60;
+  stroke-width: 2;
+}
+
+.linechart_label {
+  fill: #bdc3c7;
+  stroke-width: 0;
+}
