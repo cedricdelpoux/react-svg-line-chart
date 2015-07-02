@@ -8,6 +8,8 @@ A lightweight responsive line chart component for React using only SVG
 npm install --save react-svg-line-chart
 ```
 
+[![react-svg-line-chart](https://nodei.co/npm/react-svg-line-chart.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/react-svg-line-chart/)
+
 ## Changelog
 
 See [changelog](./CHANGELOG.md)
