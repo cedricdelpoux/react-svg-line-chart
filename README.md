@@ -112,27 +112,27 @@ export default class MyComponent extends Component {
  * `.linechart_yLabels` - if `nolabel` is false 
  * `.linechart_label` - if `nolabel` is false 
 
-### Development
+## Development
 
-## Clean `lib` folder
+### Clean `lib` folder
 
 ```js
 npm run clean
 ```
 
-## Build `lib` folder
+### Build `lib` folder
 
 ```js
 npm run build
 ```
 
-## Watch `src` folder
+### Watch `src` folder
 
 ```js
 npm run watch
 ```
 
-## Lint `src` folder
+### Lint `src` folder
 
 ```js
 npm run build
