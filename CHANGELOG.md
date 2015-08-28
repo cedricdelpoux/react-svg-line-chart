@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.3 - 2015-08-28
+
+* Add: Webpack build
+
 ## 1.0.2 - 2015-07-02
 
 * Changed: Development part in README

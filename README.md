@@ -1,4 +1,4 @@
-# react-svg-line-chart
+# react-svg-line-chart ![npm](https://img.shields.io/npm/v/react-svg-line-chart.svg) ![license](https://img.shields.io/npm/l/react-svg-line-chart.svg) ![github-issues](https://img.shields.io/github/issues/cedricdelpoux/react-svg-line-chart.svg)
 
 A lightweight responsive line chart component for React using only SVG
 
@@ -13,6 +13,10 @@ npm install --save react-svg-line-chart
 ## Changelog
 
 See [changelog](./CHANGELOG.md)
+
+## Demo 
+
+http://cedricdelpoux.github.io/react-svg-line-chart/
 
 ## Usage
 
