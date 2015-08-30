@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+<head>
+  <meta charset="UTF-8">
+
+  <title>React-svg-line-chart by cedricdelpoux</title>
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <link href="stylesheets/normalize.css" media="screen" rel="stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link href="stylesheets/stylesheet.css" media="screen" rel="stylesheet" type="text/css">
+  <link href="stylesheets/github-light.css" media="screen" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <section class="page-header">
+    <h1 class="project-name">React-svg-line-chart</h1>
+
+    <h2 class="project-tagline">A lightweight responsive line chart component for React using only SVG</h2><a class="btn" href="https://github.com/cedricdelpoux/react-svg-line-chart">View on GitHub</a> <a class="btn" href="https://github.com/cedricdelpoux/react-svg-line-chart/zipball/master">Download .zip</a> <a class="btn" href="https://github.com/cedricdelpoux/react-svg-line-chart/tarball/master">Download .tar.gz</a>
+  </section>
+
+  <section class="main-content">
+    <h1><a class="anchor" href="#react-svg-line-chart---" id="react-svg-line-chart---"><span class="octicon octicon-link"></span></a>react-svg-line-chart <img alt="npm" src="https://img.shields.io/npm/v/react-svg-line-chart.svg"> <img alt="license" src="https://img.shields.io/npm/l/react-svg-line-chart.svg"> <img alt="github-issues" src="https://img.shields.io/github/issues/cedricdelpoux/react-svg-line-chart.svg"></h1>
+
+    <p>A lightweight responsive line chart component for React using only SVG</p>
+
+    <h2><a class="anchor" href="#install" id="install"><span class="octicon octicon-link"></span></a>Install</h2>
+
+    <div class="highlight highlight-sh">
+      <pre>
+npm install --save react-svg-line-chart
+</pre>
+    </div>
+
+    <p><a href="https://nodei.co/npm/react-svg-line-chart/"><img alt="react-svg-line-chart" src="https://nodei.co/npm/react-svg-line-chart.png?downloads=true&amp;downloadRank=true&amp;stars=true"></a></p>
+
+    <h2><a class="anchor" href="#changelog" id="changelog"><span class="octicon octicon-link"></span></a>Changelog</h2>
+
+    <p>See <a href="./CHANGELOG.md">changelog</a></p>
+
+    <h2><a class="anchor" href="#demo" id="demo"><span class="octicon octicon-link"></span></a>Demo</h2>
+
+    <div id="demo-container"></div>
+
+    <h2><a class="anchor" href="#usage" id="usage"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+    <h3><a class="anchor" href="#exemple" id="exemple"><span class="octicon octicon-link"></span></a>Exemple</h3>
+
+    <div class="highlight highlight-js">
+      <pre>
+<span class="pl-k">import</span> React, { Component } <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>react<span class="pl-pds">'</span></span>
+<span class="pl-k">import</span> LineChart <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>react-svg-line-chart<span class="pl-pds">'</span></span>
+<span class="pl-k">import</span> Tooltip <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>react-simple-tooltip<span class="pl-pds">'</span></span>
+
+<span class="pl-k">export</span> <span class="pl-k">default</span> <span class="pl-k">class</span> <span class="pl-en">MyComponent</span> <span class="pl-k">extends</span> <span class="pl-en">Component</span> {
+  <span class="pl-en">constructor</span>(<span class="pl-smi">props</span>, <span class="pl-smi">context</span>) {
+    <span class="pl-v">super</span>(props, context)
+
+    <span class="pl-v">this</span>.<span class="pl-c1">state</span> <span class="pl-k">=</span> {
+      activePoint<span class="pl-k">:</span> <span class="pl-c1">null</span>,
+      tooltipTrigger<span class="pl-k">:</span> <span class="pl-c1">null</span>,
+    }
+  }
+
+  <span class="pl-en">handlePointHover</span>(<span class="pl-smi">point</span>, <span class="pl-smi">trigger</span>) {
+    <span class="pl-v">this</span>.<span class="pl-c1">setState</span>({
+      activePoint<span class="pl-k">:</span> point,
+      tooltipTrigger<span class="pl-k">:</span> trigger,
+    })
+  }
+
+  <span class="pl-en">render</span>() {
+    <span class="pl-k">const</span> <span class="pl-c1">data</span> <span class="pl-k">=</span> []
+
+    <span class="pl-k">for</span> (<span class="pl-k">let</span> x <span class="pl-k">=</span> <span class="pl-c1">1</span>; x <span class="pl-k">&lt;=</span> <span class="pl-c1">30</span>; x<span class="pl-k">++</span>) {
+      data.<span class="pl-c1">push</span>({ x<span class="pl-k">:</span> x, y<span class="pl-k">:</span> <span class="pl-c1">Math</span>.<span class="pl-c1">floor</span>(<span class="pl-c1">Math</span>.<span class="pl-c1">random</span>() <span class="pl-k">*</span> (<span class="pl-c1">100</span>)) })
+    }
+
+    <span class="pl-k">return</span> (
+      <span class="pl-k">&lt;</span>div<span class="pl-k">&gt;</span>
+        <span class="pl-c">// Tooltip</span>
+        { <span class="pl-v">this</span>.<span class="pl-c1">state</span>.<span class="pl-c1">tooltipTrigger</span>
+          <span class="pl-k">?</span> (
+            <span class="pl-k">&lt;</span>Tooltip placement<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>top<span class="pl-pds">"</span></span> trigger<span class="pl-k">=</span>{ <span class="pl-v">this</span>.<span class="pl-c1">state</span>.<span class="pl-c1">tooltipTrigger</span> }<span class="pl-k">&gt;</span>
+              <span class="pl-k">&lt;</span>div<span class="pl-k">&gt;</span>y <span class="pl-k">:</span> { <span class="pl-v">this</span>.<span class="pl-c1">state</span>.<span class="pl-c1">activePoint</span>.<span class="pl-c1">y</span> }<span class="pl-k">&lt;</span>/div<span class="pl-k">&gt;</span>
+              <span class="pl-k">&lt;</span>div<span class="pl-k">&gt;</span>x <span class="pl-k">:</span> { <span class="pl-v">this</span>.<span class="pl-c1">state</span>.<span class="pl-c1">activePoint</span>.<span class="pl-c1">x</span> }<span class="pl-k">&lt;</span>/div<span class="pl-k">&gt;</span>
+            <span class="pl-k">&lt;</span>/Tooltip<span class="pl-k">&gt;</span>
+          )
+          <span class="pl-k">:</span> <span class="pl-c1">null</span>
+        }
+
+        <span class="pl-c">// LineChart component</span>
+        <span class="pl-k">&lt;</span>LineChart
+          activePoint<span class="pl-k">=</span>{ <span class="pl-v">this</span>.<span class="pl-c1">state</span>.<span class="pl-c1">activePoint</span> }
+          data<span class="pl-k">=</span>{ data }
+          onPointHover<span class="pl-k">=</span>{ <span class="pl-k">::</span><span class="pl-v">this</span>.<span class="pl-c1">handlePointHover</span> }
+          nogrid
+        /<span class="pl-k">&gt;</span>
+      <span class="pl-k">&lt;</span>/div<span class="pl-k">&gt;</span>
+    )
+  }
+}
+</pre>
+    </div>
+
+    <h3><a class="anchor" href="#props" id="props"><span class="octicon octicon-link"></span></a>Props</h3>
+
+    <ul>
+      <li><code>activePoint</code>: Object of { Number, Number } - by default is { x: null, y: null }</li>
+
+      <li><code>data</code>: Array of [ Object of { Number, Number } ] - by default is [] - is required</li>
+
+      <li><code>formatX</code>: Function - by default is null. To format x axis labels,</li>
+
+      <li><code>formatY</code>: Function - by default is null. To format y axis labels,</li>
+
+      <li><code>hoveredPointRadius</code>: Number - by default is 6,</li>
+
+      <li><code>noarea</code>: Boolean - by default is false. To hide area,</li>
+
+      <li><code>noaxis</code>: Boolean - by default is false. To hide axis,</li>
+
+      <li><code>nogrid</code>: Boolean - by default is false. To hide grid,</li>
+
+      <li><code>nolabel</code>: Boolean - by default is false. To hide labels,</li>
+
+      <li><code>nopath</code>: Boolean - by default is false. To hide path,</li>
+
+      <li><code>nopoint</code>: Boolean - by default is false. To hide points,</li>
+
+      <li><code>onMouseEnter</code>: Function - by default is null,</li>
+
+      <li><code>onMouseLeave</code>: Function - by default is null,</li>
+
+      <li><code>onPointHover</code>: Function - by default is null,</li>
+
+      <li><code>pointRadius</code>: Number - by default is 4,</li>
+
+      <li><code>viewBoxHeight</code>: Number - by default is 300,</li>
+
+      <li><code>viewBoxWidth</code>: Number - by default is 800,</li>
+
+      <li><code>yLabelsNb</code>: Number - by default is 5,</li>
+
+      <li><code>yLabelsWidth</code>: Number - by default is 40,</li>
+    </ul>
+
+    <h3><a class="anchor" href="#classes" id="classes"><span class="octicon octicon-link"></span></a>Classes</h3>
+
+    <ul>
+      <li><code>.linechart</code></li>
+
+      <li><code>.linechart-withPadding</code> - if <code>nolabel</code> or <code>nopoint</code> is false</li>
+
+      <li><code>.linechart_grid</code> - if <code>nogrid</code> is false</li>
+
+      <li><code>.linechart_axis</code> - if <code>nogaxis</code> is false</li>
+
+      <li><code>.linechart_area</code> - if <code>noarea</code> is false</li>
+
+      <li><code>.linechart_path</code> - if <code>nopath</code> is false</li>
+
+      <li><code>.linechart_points</code> - if <code>nopoint</code> is false</li>
+
+      <li><code>.linechart_point</code> - if <code>nopoint</code> is false</li>
+
+      <li><code>.linechart_labels</code> - if <code>nolabel</code> is false</li>
+
+      <li><code>.linechart_xLabels</code> - if <code>nolabel</code> is false</li>
+
+      <li><code>.linechart_yLabels</code> - if <code>nolabel</code> is false</li>
+
+      <li><code>.linechart_label</code> - if <code>nolabel</code> is false</li>
+    </ul>
+
+    <h2><a class="anchor" href="#development" id="development"><span class="octicon octicon-link"></span></a>Development</h2>
+
+    <h3><a class="anchor" href="#clean-lib-folder" id="clean-lib-folder"><span class="octicon octicon-link"></span></a>Clean <code>lib</code> folder</h3>
+
+    <div class="highlight highlight-js">
+      <pre>
+npm run clean
+</pre>
+    </div>
+
+    <h3><a class="anchor" href="#build-lib-folder" id="build-lib-folder"><span class="octicon octicon-link"></span></a>Build <code>lib</code> folder</h3>
+
+    <div class="highlight highlight-js">
+      <pre>
+npm run build
+</pre>
+    </div>
+
+    <h3><a class="anchor" href="#watch-src-folder" id="watch-src-folder"><span class="octicon octicon-link"></span></a>Watch <code>src</code> folder</h3>
+
+    <div class="highlight highlight-js">
+      <pre>
+npm run watch
+</pre>
+    </div>
+
+    <h3><a class="anchor" href="#lint-src-folder" id="lint-src-folder"><span class="octicon octicon-link"></span></a>Lint <code>src</code> folder</h3>
+
+    <div class="highlight highlight-js">
+      <pre>
+npm run build
+</pre>
+    </div>
+
+    <h2><a class="anchor" href="#license" id="license"><span class="octicon octicon-link"></span></a>License</h2>
+
+    <p>See <a href="./LICENCE">MIT</a></p>
+
+    <footer class="site-footer">
+      <span class="site-footer-owner"><a href="https://github.com/cedricdelpoux/react-svg-line-chart">React-svg-line-chart</a></span>
+    </footer><span class="site-footer-owner"></span>
+  </section>
+  <script type="text/javascript" src="build/bundle.js"></script>
+</body>
+</html>

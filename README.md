@@ -1,4 +1,4 @@
-# react-svg-line-chart
+# react-svg-line-chart ![npm](https://img.shields.io/npm/v/react-svg-line-chart.svg) ![license](https://img.shields.io/npm/l/react-svg-line-chart.svg) ![github-issues](https://img.shields.io/github/issues/cedricdelpoux/react-svg-line-chart.svg)
 
 A lightweight responsive line chart component for React using only SVG
 
@@ -8,9 +8,15 @@ A lightweight responsive line chart component for React using only SVG
 npm install --save react-svg-line-chart
 ```
 
+[![react-svg-line-chart](https://nodei.co/npm/react-svg-line-chart.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/react-svg-line-chart/)
+
 ## Changelog
 
 See [changelog](./CHANGELOG.md)
+
+## Demo 
+
+http://cedricdelpoux.github.io/react-svg-line-chart/
 
 ## Usage
 
@@ -110,27 +116,27 @@ export default class MyComponent extends Component {
  * `.linechart_yLabels` - if `nolabel` is false 
  * `.linechart_label` - if `nolabel` is false 
 
-### Development
+## Development
 
-## Clean `lib` folder
+### Clean `lib` folder
 
 ```js
 npm run clean
 ```
 
-## Build `lib` folder
+### Build `lib` folder
 
 ```js
 npm run build
 ```
 
-## Watch `src` folder
+### Watch `src` folder
 
 ```js
 npm run watch
 ```
 
-## Lint `src` folder
+### Lint `src` folder
 
 ```js
 npm run build
