@@ -96,6 +96,8 @@ export default class MyComponent extends Component {
   * `noGridXLines`: Boolean - by default is false. To hide grid X lines,
   * `noGridYLines`: Boolean - by default is false. To hide grid Y lines,
   * `nolabel`: Boolean - by default is false. To hide labels,
+  * `noXlabel`: Boolean - by default is false. To hide X axis label,
+  * `noYlabel`: Boolean - by default is false. To hide Y axis label,
   * `nopath`: Boolean - by default is false. To hide path,
   * `nopoint`: Boolean - by default is false. To hide points,
   * `onMouseEnter`: Function - by default is null,
