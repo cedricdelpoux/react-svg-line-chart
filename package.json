@@ -15,6 +15,7 @@
     "svg"
   ],
   "author": "Cédric Delpoux <cedric.delpoux@gmail.com>",
+  "contributors": "Marek Kawczynski <mkawczynski07@gmail.com> (https://github.com/mkawczynski07)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/cedricdelpoux/react-svg-line-chart/issues"
