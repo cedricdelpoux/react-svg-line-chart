@@ -10,7 +10,7 @@ module.exports = {
   entry: ['babel-polyfill', './src/index.js'],
   output: {
     path: __dirname,
-    filename: '/lib/index.js',
+    filename: './lib/index.js',
     library: 'ReactSvgLineChart',
     libraryTarget: 'umd',
   },

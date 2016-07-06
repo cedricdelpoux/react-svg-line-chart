@@ -28,6 +28,8 @@ export default class LineChart extends React.Component {
     noGridXLines: bool,
     noGridYLines: bool,
     nolabel: bool,
+    noXlabel: bool,
+    noYlabel: bool,
     nopath: bool,
     nopoint: bool,
     onPointHover: func,
@@ -55,6 +57,8 @@ export default class LineChart extends React.Component {
     noGridXLines: false,
     noGridYLines: false,
     nolabel: false,
+    noXlabel: false,
+    noYlabel: false,
     nopath: false,
     nopoint: false,
     onPointHover: () => {},
@@ -186,7 +190,7 @@ export default class LineChart extends React.Component {
   }
 
   getLabels() {
-    const { data, formatX, formatY, yLabelsNb, noXaxisPoints, noYaxisPoints } = this.props;
+    const { data, formatX, formatY, yLabelsNb, noXaxisPoints, noYaxisPoints, noXlabel, noYlabel } = this.props;
     const minX = this.getMinX()
     const maxY = this.getMaxY()
     const yLabelsRange = []
@@ -195,7 +199,7 @@ export default class LineChart extends React.Component {
       yLabelsRange.push(i)
     }
 
-    const xLabels = data.filter((point) => (point.x & 1)).map((point) => (
+    const xLabels = !noXlabel ? data.filter((point) => (point.x & 1)).map((point) => (
       <g
         key={ 'linechart_label_x_' + point.x }
         className="linechart_label"
@@ -206,9 +210,9 @@ export default class LineChart extends React.Component {
           { formatX ? formatX(point.x) : point.x }
         </text>
       </g>
-    ))
+    )) : null;
 
-    const yLabels = yLabelsRange.map((y) => (
+    const yLabels = !noYlabel ? yLabelsRange.map((y) => (
       <g
         key={ 'linechart_label_y_' + y }
         className="linechart_label"
@@ -219,7 +223,7 @@ export default class LineChart extends React.Component {
           { formatY ? formatY(y) : y }
         </text>
       </g>
-    ))
+    )): null;
 
     return (
       <g className="linechart_labels">
