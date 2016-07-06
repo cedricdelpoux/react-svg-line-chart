@@ -1,11 +1,11 @@
-import './index.css'
+import './index.css';
 
-import React, { PropTypes } from 'react'
-import classNames from 'classnames'
+import React, { PropTypes } from 'react';
+import classNames from 'classnames';
 
-const { arrayOf, bool, func, number, shape } = PropTypes
+const { arrayOf, bool, func, number, shape } = PropTypes;
 
-export default class LineChart {
+export default class LineChart extends React.Component {
   static propTypes = {
     activePoint: shape({
       x: number,
@@ -283,7 +283,7 @@ export default class LineChart {
       <svg
         className={ classNames('linechart', (!nolabel || !nopoint) && 'linechart-withPadding', className) }
         viewBox={ `0 0 ${viewBoxWidth} ${viewBoxHeight}` }
-        { ...props }
+
       >
         <g transform={`translate(${!nolabel ? yLabelsWidth : 0}, 0)`}>
           { !nogrid ? this.getGrid() : null }
