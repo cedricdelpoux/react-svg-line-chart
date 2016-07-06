@@ -47,6 +47,6 @@ module.exports = {
         warnings: false,
       },
     }),
-    new ExtractTextPlugin('./lib/index.css'),
+    new ExtractTextPlugin('../tag_cloud/public_html/line.css'),
   ]
 }

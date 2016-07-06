@@ -20,7 +20,13 @@ export default class LineChart extends React.Component {
     hoveredPointRadius: number,
     noarea: bool,
     noaxis: bool,
+    noXaxis: bool,
+    noXaxisPoints: bool,
+    noYaxis: bool,
+    noYaxisPoints: bool,
     nogrid: bool,
+    noGridXLines: bool,
+    noGridYLines: bool,
     nolabel: bool,
     nopath: bool,
     nopoint: bool,
@@ -41,7 +47,13 @@ export default class LineChart extends React.Component {
     hoveredPointRadius: 6,
     noarea: false,
     noaxis: false,
+    noXaxis: false,
+    noXaxisPoints: false,
+    noYaxis: false,
+    noYaxisPoints: false,
     nogrid: false,
+    noGridXLines: false,
+    noGridYLines: false,
     nolabel: false,
     nopath: false,
     nopoint: false,
@@ -100,7 +112,7 @@ export default class LineChart extends React.Component {
    */
 
   getGrid(chart) {
-    const { data, yLabelsNb } = this.props
+    const { data, yLabelsNb, noGridXLines, noGridYLines } = this.props
     const minX = this.getMinX()
     const maxX = this.getMaxX()
     const minY = 0
@@ -108,29 +120,33 @@ export default class LineChart extends React.Component {
     const gridY = []
     const maxY = this.getMaxY()
 
-    for (let i = minX; i <= maxX; i++) {
-      gridX.push(
-        <line
-          key={ 'linechart_grid_x_' + i }
-          x1={ this.getSvgX(i) }
-          y1={ this.getSvgY(minY) }
-          x2={ this.getSvgX(i) }
-          y2={ this.getSvgY(maxY) }
-        />
-      )
-    }
+    if(noGridXLines === false) {
+      for (let i = minX; i <= maxX; i++) {
+        gridX.push(
+          <line
+            key={ 'linechart_grid_x_' + i }
+            x1={ this.getSvgX(i) }
+            y1={ this.getSvgY(minY) }
+            x2={ this.getSvgX(i) }
+            y2={ this.getSvgY(maxY) }
+          />
+        )
+      }
+   }
 
-    for (let i = minY; i <= maxY; i += Math.floor(maxY / yLabelsNb)) {
-      gridY.push(
-        <line
-          key={ 'linechart_grid_y_' + i }
-          x1={ this.getSvgX(minX) }
-          y1={ this.getSvgY(i) }
-          x2={ this.getSvgX(maxX) }
-          y2={ this.getSvgY(i) }
-        />
-      )
-    }
+   if(noGridYLines === false) {
+      for (let i = minY; i <= maxY; i += Math.floor(maxY / yLabelsNb)) {
+        gridY.push(
+          <line
+            key={ 'linechart_grid_y_' + i }
+            x1={ this.getSvgX(minX) }
+            y1={ this.getSvgY(i) }
+            x2={ this.getSvgX(maxX) }
+            y2={ this.getSvgY(i) }
+          />
+        )
+      }
+   }
 
     return (
       <g className="linechart_grid">
@@ -170,7 +186,7 @@ export default class LineChart extends React.Component {
   }
 
   getLabels() {
-    const { data, formatX, formatY, yLabelsNb } = this.props
+    const { data, formatX, formatY, yLabelsNb, noXaxisPoints, noYaxisPoints } = this.props;
     const minX = this.getMinX()
     const maxY = this.getMaxY()
     const yLabelsRange = []
@@ -185,7 +201,7 @@ export default class LineChart extends React.Component {
         className="linechart_label"
         transform={`translate(${ this.getSvgX(point.x) },${ this.getSvgY(0) })`}
       >
-        <circle r="2" cx="0" cy="0" />
+        { !noXaxisPoints ? <circle r="2" cx="0" cy="0" /> : null }
         <text transform="translate(0, 20)" textAnchor="middle">
           { formatX ? formatX(point.x) : point.x }
         </text>
@@ -198,7 +214,7 @@ export default class LineChart extends React.Component {
         className="linechart_label"
         transform={`translate(${ this.getSvgX(minX) },${ this.getSvgY(y) })`}
       >
-        <circle r="2" cx="0" cy="0" />
+        { !noYaxisPoints ? <circle r="2" cx="0" cy="0" /> : null }
         <text transform="translate(-10, 5)" textAnchor="end">
           { formatY ? formatY(y) : y }
         </text>
@@ -214,7 +230,7 @@ export default class LineChart extends React.Component {
   }
 
   getAxis() {
-    const { data } = this.props
+    const { data, noXaxis, noYaxis } = this.props
     const minX = this.getMinX()
     const maxX = this.getMaxX()
     const minY = this.getMinY()
@@ -222,18 +238,18 @@ export default class LineChart extends React.Component {
 
     return (
       <g className="linechart_axis">
-        <line
+        { !noXaxis ? <line
           x1={ this.getSvgX(minX) }
           y1={ this.getSvgY(minY) }
           x2={ this.getSvgX(maxX) }
           y2={ this.getSvgY(minY) }
-        />
-        <line
+        /> : null }
+        { !noYaxis ? <line
           x1={ this.getSvgX(minX) }
           y1={ this.getSvgY(minY) }
           x2={ this.getSvgX(minX) }
           y2={ this.getSvgY(maxY) }
-        />
+        /> : null }
       </g>
     )
   }

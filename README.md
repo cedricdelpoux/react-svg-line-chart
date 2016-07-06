@@ -14,7 +14,7 @@ npm install --save react-svg-line-chart
 
 See [changelog](./CHANGELOG.md)
 
-## Demo 
+## Demo
 
 http://cedricdelpoux.github.io/react-svg-line-chart/
 
@@ -88,7 +88,13 @@ export default class MyComponent extends Component {
   * `hoveredPointRadius`: Number - by default is 6,
   * `noarea`: Boolean - by default is false. To hide area,
   * `noaxis`: Boolean - by default is false. To hide axis,
+  * `noXaxis`: Boolean - by default is false. To hide X axis,
+  * `noYaxis`: Boolean - by default is false. To hide Y axis,
+  * `noXaxisPoints`: Boolean - by default is false. To hide points on X axis,
+  * `noYaxisPoints`: Boolean - by default is false. To hide points on Y axis,
   * `nogrid`: Boolean - by default is false. To hide grid,
+  * `noGridXLines`: Boolean - by default is false. To hide grid X lines,
+  * `noGridYLines`: Boolean - by default is false. To hide grid Y lines,
   * `nolabel`: Boolean - by default is false. To hide labels,
   * `nopath`: Boolean - by default is false. To hide path,
   * `nopoint`: Boolean - by default is false. To hide points,
@@ -105,16 +111,16 @@ export default class MyComponent extends Component {
 
  * `.linechart`
  * `.linechart-withPadding` - if `nolabel` or `nopoint` is false
- * `.linechart_grid` - if `nogrid` is false 
- * `.linechart_axis` - if `nogaxis` is false 
- * `.linechart_area` - if `noarea` is false 
- * `.linechart_path` - if `nopath` is false 
- * `.linechart_points` - if `nopoint` is false 
- * `.linechart_point` - if `nopoint` is false 
- * `.linechart_labels` - if `nolabel` is false 
- * `.linechart_xLabels` - if `nolabel` is false 
- * `.linechart_yLabels` - if `nolabel` is false 
- * `.linechart_label` - if `nolabel` is false 
+ * `.linechart_grid` - if `nogrid` is false
+ * `.linechart_axis` - if `nogaxis` is false
+ * `.linechart_area` - if `noarea` is false
+ * `.linechart_path` - if `nopath` is false
+ * `.linechart_points` - if `nopoint` is false
+ * `.linechart_point` - if `nopoint` is false
+ * `.linechart_labels` - if `nolabel` is false
+ * `.linechart_xLabels` - if `nolabel` is false
+ * `.linechart_yLabels` - if `nolabel` is false
+ * `.linechart_label` - if `nolabel` is false
 
 ## Development
 
