@@ -10,7 +10,7 @@ module.exports = {
   entry: ['babel-polyfill', './src/index.js'],
   output: {
     path: __dirname,
-    filename: '../tag_cloud/public_html/line.js',
+    filename: '/lib/index.js',
     library: 'ReactSvgLineChart',
     libraryTarget: 'umd',
   },
@@ -47,6 +47,6 @@ module.exports = {
         warnings: false,
       },
     }),
-    new ExtractTextPlugin('../tag_cloud/public_html/line.css'),
+    new ExtractTextPlugin('./lib/index.css'),
   ]
 }
