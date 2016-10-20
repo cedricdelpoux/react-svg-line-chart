@@ -29,6 +29,7 @@ export default class LineChart {
     viewBoxHeight: number,
     viewBoxWidth: number,
     yLabelsNb: number,
+    xLabelsStep:number,
     yLabelsWidth: number,
   }
 
@@ -50,6 +51,7 @@ export default class LineChart {
     viewBoxHeight: 300,
     viewBoxWidth: 800,
     yLabelsNb: 5,
+    xLabelsStep: -1,
     yLabelsWidth: 40,
   }
 
@@ -174,12 +176,14 @@ export default class LineChart {
     const minX = this.getMinX()
     const maxY = this.getMaxY()
     const yLabelsRange = []
-
+    const intMaxX = Math.ceil(this.getMaxX())
+    const intMinX = Math.floor(minX)
+    
     for (let i = 0; i <= maxY; i += Math.floor(maxY / yLabelsNb)) {
       yLabelsRange.push(i)
     }
 
-    const xLabels = data.filter((point) => (point.x & 1)).map((point) => (
+    let xLabels = data.filter((point) => (point.x & 1)).map((point) => (
       <g
         key={ 'linechart_label_x_' + point.x }
         className="linechart_label"
@@ -191,7 +195,21 @@ export default class LineChart {
         </text>
       </g>
     ))
-
+    if (this.props.xLabelsStep > 0) {
+      for (let i = intMinX; i <= intMaxX; i += this.props.xLabelsStep) {
+        xLabelsRange.push(i)
+      }
+      xLabels = xLabelsRange.map((x) => (
+        <g key={'linechart_label_x_' + x} className="linechart_label" transform={`translate(${this.getSvgX(x)},${this.getSvgY(0)})`}>
+          <circle r="2" cx="0" cy="0"/>
+          <text transform="translate(0, 20)" textAnchor="middle">
+            {formatX
+              ? formatX(x)
+              : x}
+          </text>
+        </g>
+      ))
+    }
     const yLabels = yLabelsRange.map((y) => (
       <g
         key={ 'linechart_label_y_' + y }
