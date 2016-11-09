@@ -4,7 +4,7 @@
   "description": "A lightweight responsive line chart component for React using only SVG",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cedricdelpoux/react-svg-line-chart.git"
+    "url": "git+https://github.com/xuopled/react-svg-line-chart.git"
   },
   "keywords": [
     "react",
@@ -18,9 +18,9 @@
   "contributors": "Marek Kawczynski <mkawczynski07@gmail.com> (https://github.com/mkawczynski07)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/cedricdelpoux/react-svg-line-chart/issues"
+    "url": "https://github.com/xuopled/react-svg-line-chart/issues"
   },
-  "homepage": "https://github.com/cedricdelpoux/react-svg-line-chart#readme",
+  "homepage": "https://github.com/xuopled/react-svg-line-chart#readme",
   "main": "lib/index.js",
   "files": [
     "lib"
