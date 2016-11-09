@@ -1,11 +1,11 @@
-import './index.css'
+import './index.css';
 
-import React, { PropTypes } from 'react'
-import classNames from 'classnames'
+import React, { PropTypes } from 'react';
+import classNames from 'classnames';
 
-const { arrayOf, bool, func, number, shape } = PropTypes
+const { arrayOf, bool, func, number, shape } = PropTypes;
 
-export default class LineChart {
+export default class LineChart extends React.Component {
   static propTypes = {
     activePoint: shape({
       x: number,
@@ -20,8 +20,16 @@ export default class LineChart {
     hoveredPointRadius: number,
     noarea: bool,
     noaxis: bool,
+    noXaxis: bool,
+    noXaxisPoints: bool,
+    noYaxis: bool,
+    noYaxisPoints: bool,
     nogrid: bool,
+    noGridXLines: bool,
+    noGridYLines: bool,
     nolabel: bool,
+    noXlabel: bool,
+    noYlabel: bool,
     nopath: bool,
     nopoint: bool,
     onPointHover: func,
@@ -42,8 +50,16 @@ export default class LineChart {
     hoveredPointRadius: 6,
     noarea: false,
     noaxis: false,
+    noXaxis: false,
+    noXaxisPoints: false,
+    noYaxis: false,
+    noYaxisPoints: false,
     nogrid: false,
+    noGridXLines: false,
+    noGridYLines: false,
     nolabel: false,
+    noXlabel: false,
+    noYlabel: false,
     nopath: false,
     nopoint: false,
     onPointHover: () => {},
@@ -102,7 +118,7 @@ export default class LineChart {
    */
 
   getGrid(chart) {
-    const { data, yLabelsNb } = this.props
+    const { data, yLabelsNb, noGridXLines, noGridYLines } = this.props
     const minX = this.getMinX()
     const maxX = this.getMaxX()
     const minY = 0
@@ -110,29 +126,33 @@ export default class LineChart {
     const gridY = []
     const maxY = this.getMaxY()
 
-    for (let i = minX; i <= maxX; i++) {
-      gridX.push(
-        <line
-          key={ 'linechart_grid_x_' + i }
-          x1={ this.getSvgX(i) }
-          y1={ this.getSvgY(minY) }
-          x2={ this.getSvgX(i) }
-          y2={ this.getSvgY(maxY) }
-        />
-      )
-    }
+    if(noGridXLines === false) {
+      for (let i = minX; i <= maxX; i++) {
+        gridX.push(
+          <line
+            key={ 'linechart_grid_x_' + i }
+            x1={ this.getSvgX(i) }
+            y1={ this.getSvgY(minY) }
+            x2={ this.getSvgX(i) }
+            y2={ this.getSvgY(maxY) }
+          />
+        )
+      }
+   }
 
-    for (let i = minY; i <= maxY; i += Math.floor(maxY / yLabelsNb)) {
-      gridY.push(
-        <line
-          key={ 'linechart_grid_y_' + i }
-          x1={ this.getSvgX(minX) }
-          y1={ this.getSvgY(i) }
-          x2={ this.getSvgX(maxX) }
-          y2={ this.getSvgY(i) }
-        />
-      )
-    }
+   if(noGridYLines === false) {
+      for (let i = minY; i <= maxY; i += Math.floor(maxY / yLabelsNb)) {
+        gridY.push(
+          <line
+            key={ 'linechart_grid_y_' + i }
+            x1={ this.getSvgX(minX) }
+            y1={ this.getSvgY(i) }
+            x2={ this.getSvgX(maxX) }
+            y2={ this.getSvgY(i) }
+          />
+        )
+      }
+   }
 
     return (
       <g className="linechart_grid">
@@ -172,7 +192,7 @@ export default class LineChart {
   }
 
   getLabels() {
-    const { data, formatX, formatY, yLabelsNb } = this.props
+    const { data, formatX, formatY, yLabelsNb, noXaxisPoints, noYaxisPoints, noXlabel, noYlabel } = this.props;
     const minX = this.getMinX()
     const maxY = this.getMaxY()
     const yLabelsRange = []
@@ -183,18 +203,18 @@ export default class LineChart {
       yLabelsRange.push(i)
     }
 
-    let xLabels = data.filter((point) => (point.x & 1)).map((point) => (
+    let xLabels = !noXlabel ? data.filter((point) => (point.x & 1)).map((point) => (
       <g
         key={ 'linechart_label_x_' + point.x }
         className="linechart_label"
         transform={`translate(${ this.getSvgX(point.x) },${ this.getSvgY(0) })`}
       >
-        <circle r="2" cx="0" cy="0" />
+        { !noXaxisPoints ? <circle r="2" cx="0" cy="0" /> : null }
         <text transform="translate(0, 20)" textAnchor="middle">
           { formatX ? formatX(point.x) : point.x }
         </text>
       </g>
-    ))
+    )) : null;
     if (this.props.xLabelsStep > 0) {
       for (let i = intMinX; i <= intMaxX; i += this.props.xLabelsStep) {
         xLabelsRange.push(i)
@@ -210,18 +230,18 @@ export default class LineChart {
         </g>
       ))
     }
-    const yLabels = yLabelsRange.map((y) => (
+const yLabels = !noYlabel ? yLabelsRange.map((y) => (
       <g
         key={ 'linechart_label_y_' + y }
         className="linechart_label"
         transform={`translate(${ this.getSvgX(minX) },${ this.getSvgY(y) })`}
       >
-        <circle r="2" cx="0" cy="0" />
+        { !noYaxisPoints ? <circle r="2" cx="0" cy="0" /> : null }
         <text transform="translate(-10, 5)" textAnchor="end">
           { formatY ? formatY(y) : y }
         </text>
       </g>
-    ))
+    )): null;
 
     return (
       <g className="linechart_labels">
@@ -232,7 +252,7 @@ export default class LineChart {
   }
 
   getAxis() {
-    const { data } = this.props
+    const { data, noXaxis, noYaxis } = this.props
     const minX = this.getMinX()
     const maxX = this.getMaxX()
     const minY = this.getMinY()
@@ -240,18 +260,18 @@ export default class LineChart {
 
     return (
       <g className="linechart_axis">
-        <line
+        { !noXaxis ? <line
           x1={ this.getSvgX(minX) }
           y1={ this.getSvgY(minY) }
           x2={ this.getSvgX(maxX) }
           y2={ this.getSvgY(minY) }
-        />
-        <line
+        /> : null }
+        { !noYaxis ? <line
           x1={ this.getSvgX(minX) }
           y1={ this.getSvgY(minY) }
           x2={ this.getSvgX(minX) }
           y2={ this.getSvgY(maxY) }
-        />
+        /> : null }
       </g>
     )
   }
@@ -301,7 +321,7 @@ export default class LineChart {
       <svg
         className={ classNames('linechart', (!nolabel || !nopoint) && 'linechart-withPadding', className) }
         viewBox={ `0 0 ${viewBoxWidth} ${viewBoxHeight}` }
-        { ...props }
+
       >
         <g transform={`translate(${!nolabel ? yLabelsWidth : 0}, 0)`}>
           { !nogrid ? this.getGrid() : null }

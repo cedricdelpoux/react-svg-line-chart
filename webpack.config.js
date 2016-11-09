@@ -7,7 +7,7 @@ var sources = [
 ]
 
 module.exports = {
-  entry: './src/index.js',
+  entry: ['babel-polyfill', './src/index.js'],
   output: {
     path: __dirname,
     filename: './lib/index.js',
@@ -19,13 +19,16 @@ module.exports = {
   },
   module: {
     preLoaders: [
-      { test: /\.js?$/, include: sources, loader: 'eslint' },
+      //{ test: /\.js?$/, include: sources, loader: 'eslint' },
     ],
     loaders: [
-      { test: /\.js$/, include: sources, loader: 'babel' },
+      { test: /\.js$/, include: sources, exclude: /(node_modules|bower_components)/, loader: 'babel-loader' },
       { test: /\.css$/, include: sources, loader: ExtractTextPlugin.extract('style', 'css') },
     ],
   },
+  exclude: [
+    path.resolve(__dirname, "node_modules"),
+  ],
   externals: {
     react: {
       root: 'React',

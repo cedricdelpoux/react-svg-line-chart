@@ -14,7 +14,7 @@
 
   "ecmaFeatures": {
     "jsx": true,
-    "modules": true
+    "classes": true
   },
 
   "rules": {
@@ -34,14 +34,10 @@
     "no-use-before-define": 0,
     "no-var": 2,
     "semi": [2, "never"],
-    "space-after-keywords": [1, "always"],
     "space-before-blocks": [1, "always"],
-    "space-before-function-parentheses": [1, "never"],
     "space-in-parens": [1, "never"],
-    "spaced-line-comment": [1, "always"],
     "strict": [2, "never"],
     "react/jsx-boolean-value": [1, "never"],
-    "react/jsx-quotes": [1, "double", "avoid-escape"],
     "react/jsx-uses-react": 2,
     "react/jsx-uses-vars": 2,
     "react/no-did-mount-set-state": 2,
