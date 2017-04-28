@@ -1,52 +1,59 @@
-var webpack = require('webpack')
-var path = require('path')
-var ExtractTextPlugin = require('extract-text-webpack-plugin')
+var webpack = require("webpack")
+var path = require("path")
+var ExtractTextPlugin = require("extract-text-webpack-plugin")
 
 var sources = [
-  path.resolve(__dirname, 'src'),
+  path.resolve(__dirname, "src"),
 ]
 
 module.exports = {
-  entry: ['babel-polyfill', './src/index.js'],
+  entry: ["babel-polyfill", "./src/index.js"],
   output: {
     path: __dirname,
-    filename: './lib/index.js',
-    library: 'ReactSvgLineChart',
-    libraryTarget: 'umd',
+    filename: "./lib/index.js",
+    library: "ReactSvgLineChart",
+    libraryTarget: "umd",
   },
   resolve: {
-    extensions: ['', '.js', '.css']
+    extensions: [".js"]
   },
   module: {
-    preLoaders: [
-      //{ test: /\.js?$/, include: sources, loader: 'eslint' },
-    ],
     loaders: [
-      { test: /\.js$/, include: sources, exclude: /(node_modules|bower_components)/, loader: 'babel-loader' },
-      { test: /\.css$/, include: sources, loader: ExtractTextPlugin.extract('style', 'css') },
+      {
+        test: /\.js$/,
+        include: sources,
+        exclude: /node_modules/,
+        loaders: [
+            "babel-loader",
+            "eslint-loader?emitWarning",
+          ],
+      },
+      {
+        test: /\.css$/,
+        include: sources,
+        loader: ExtractTextPlugin.extract({
+          fallback: "style-loader",
+          use: [
+            {loader: "css-loader"},
+          ],
+        }),
+      },
     ],
   },
-  exclude: [
-    path.resolve(__dirname, "node_modules"),
-  ],
   externals: {
     react: {
-      root: 'React',
-      commonjs: 'react',
-      commonjs2: 'react',
-      amd: 'react',
+      root: "React",
+      commonjs: "react",
+      commonjs2: "react",
+      amd: "react",
     },
   },
   plugins: [
-    new webpack.NoErrorsPlugin(),
-    new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.AggressiveMergingPlugin(),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false,
-      },
+    new webpack.optimize.UglifyJsPlugin(
+      {compress: {warnings: false}}
+    ),
+    new ExtractTextPlugin({
+      filename: "./lib/index.css",
     }),
-    new ExtractTextPlugin('./lib/index.css'),
   ]
 }
