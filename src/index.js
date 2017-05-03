@@ -26,7 +26,7 @@ class LineChart extends Component {
   getMaxY() {
     const {data, yLabelsNb} = this.props
     const maxY = data.length > 0 ? data.reduce((max, point) => point.y > max ? point.y : max, data[0].y) : 0
-    return Math.ceil(maxY / yLabelsNb) * yLabelsNb
+    return maxY ? Math.ceil(maxY / yLabelsNb) * yLabelsNb : yLabelsNb
   }
 
   /**
@@ -263,11 +263,11 @@ class LineChart extends Component {
 }
 
 LineChart.propTypes = {
-  activePoint: shape({
+  activePoint: PropTypes.shape({
     x: PropTypes.number,
     y: PropTypes.number,
   }),
-  data: arrayOf(shape({
+  data: PropTypes.arrayOf(PropTypes.shape({
     x: PropTypes.number,
     y: PropTypes.number,
   })).isRequired,

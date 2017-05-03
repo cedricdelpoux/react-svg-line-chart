@@ -1,3 +1,7 @@
+# 1.0.5 - 2017-05-03
+* Fixed: use `PropTypes.shape` and `PropTypes.arrayOf`
+* Fixed: no freeze if all y coords = 0
+
 # 1.0.4 - 2017-04-28
 
 * Added: Yarn
