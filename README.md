@@ -132,6 +132,12 @@ export default class MyComponent extends Component {
 npm run clean
 ```
 
+### Launch demo
+
+```js
+npm run demo
+```
+
 ### Build `lib` folder
 
 ```js
