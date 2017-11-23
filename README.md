@@ -1,161 +1,133 @@
-# react-svg-line-chart ![npm](https://img.shields.io/npm/v/react-svg-line-chart.svg) ![license](https://img.shields.io/npm/l/react-svg-line-chart.svg) ![github-issues](https://img.shields.io/github/issues/xuopled/react-svg-line-chart.svg)
+# react-svg-line-chart
+
+[![npm package][npm-badge]][npm]
+[![Travis][build-badge]][build]
+[![Codecov][codecov-badge]][codecov]
+![Module formats][module-formats]
 
 A lightweight responsive line chart component for React using only SVG
 
-## Install
-
-```sh
-npm install --save react-svg-line-chart
-```
+## Getting started
 
 [![react-svg-line-chart](https://nodei.co/npm/react-svg-line-chart.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/react-svg-line-chart/)
 
-## Changelog
+You can download `react-svg-line-chart` from the NPM registry via the `npm` or `yarn` commands
 
-See [changelog](./CHANGELOG.md)
+```shell
+yarn add react-svg-line-chart
+npm install react-svg-line-chart --save
+```
+
+If you don't use package manager and you want to include `react-svg-line-chart` directly in your html, you could get it from the UNPKG CDN
+
+```html
+https://unpkg.com/react-svg-line-chart/umd/react-svg-line-chart.js
+```
 
 ## Demo
 
-http://xuopled.github.io/react-svg-line-chart/
+See [Demo page][github-page]
 
 ## Usage
 
-### Exemple
-
-![LineChart exemple](/screenshots/line-chart.png)
-
 ```js
-import React, { Component } from 'react'
+import React from 'react'
 import LineChart from 'react-svg-line-chart'
-import Tooltip from 'react-simple-tooltip'
 
-export default class MyComponent extends Component {
-  constructor(props, context) {
-    super(props, context)
+const data = []
 
-    this.state = {
-      activePoint: null,
-      tooltipTrigger: null,
-    }
-  }
+for (let x = 1; x <= 30; x++) {
+    data.push({ x: x, y: Math.floor(Math.random() * (100)) })
+}
 
-  handlePointHover(point, trigger) {
-    this.setState({
-      activePoint: point,
-      tooltipTrigger: trigger,
-    })
-  }
-
-  render() {
-    const data = []
-
-    for (let x = 1; x <= 30; x++) {
-      data.push({ x: x, y: Math.floor(Math.random() * (100)) })
+export default class MyComponent extends React.Component {
+    state = {
+        activePoint: null,
     }
 
-    return (
-      <div>
-        // Tooltip
-        { this.state.tooltipTrigger
-          ? (
-            <Tooltip placement="top" trigger={ this.state.tooltipTrigger }>
-              <div>y : { this.state.activePoint.y }</div>
-              <div>x : { this.state.activePoint.x }</div>
-            </Tooltip>
-          )
-          : null
-        }
+    handlePointHover = (activePoint, e) => {
+        this.setState({activePoint})
+    }
 
-        // LineChart component
-        <LineChart
-          activePoint={ this.state.activePoint }
-          data={ data }
-          onPointHover={ ::this.handlePointHover }
-          nogrid
-        />
-      </div>
-    )
-  }
+    render() {
+        const {activePoint} = this.state
+        return (
+            <LineChart
+            data={data.map((point, i) => ({...point, active: point.x === activePoint.x ? true : false}))}
+            pointsOnHover={this.handlePointHover}
+            />
+        )
+    }
 }
 ```
 
 ### Props
 
-  * `activePoint`: Object of { Number, Number } - by default is { x: null, y: null }
-  * `data`: Array of [ Object of { Number, Number } ] - by default is [] - is required
-  * `formatX`: Function - by default is null. To format x axis labels,
-  * `formatY`: Function - by default is null. To format y axis labels,
-  * `hoveredPointRadius`: Number - by default is 6,
-  * `noarea`: Boolean - by default is false. To hide area,
-  * `noaxis`: Boolean - by default is false. To hide axis,
-  * `noXaxis`: Boolean - by default is false. To hide X axis,
-  * `noYaxis`: Boolean - by default is false. To hide Y axis,
-  * `noXaxisPoints`: Boolean - by default is false. To hide points on X axis,
-  * `noYaxisPoints`: Boolean - by default is false. To hide points on Y axis,
-  * `nogrid`: Boolean - by default is false. To hide grid,
-  * `noGridXLines`: Boolean - by default is false. To hide grid X lines,
-  * `noGridYLines`: Boolean - by default is false. To hide grid Y lines,
-  * `nolabel`: Boolean - by default is false. To hide labels,
-  * `noXlabel`: Boolean - by default is false. To hide X axis label,
-  * `noYlabel`: Boolean - by default is false. To hide Y axis label,
-  * `nopath`: Boolean - by default is false. To hide path,
-  * `nopoint`: Boolean - by default is false. To hide points,
-  * `onMouseEnter`: Function - by default is null,
-  * `onMouseLeave`: Function - by default is null,
-  * `onPointHover`: Function - by default is null,
-  * `pointRadius`: Number - by default is 4,
-  * `viewBoxHeight`: Number - by default is 300,
-  * `viewBoxWidth`: Number - by default is 800,
-  * `yLabelsNb`: Number - by default is 5,
-  * `yLabelsWidth`: Number - by default is 40,
+|Name|PropType|Description|Default|
+|---|---|---|---|
+|areaColor|String|Area color (hex, rgb...)|"#34495e"|
+|areaOpacity|Number|Area opacity|.5|
+|areaVisible|Boolean|Area visibility|false|
+|axisColor|Number|Axis color|"#34495e"|
+|axisOpacity|Number|Axis opacity|.5|
+|axisVisible|Boolean|Axis visibility|true|
+|axisWidth|Number|Axis width|1|
+|data|Array of data Objects|data is {x: number, y: number, active: bool})|[]|
+|gridColor|String|Grid color|"#34495e"|
+|gridOpacity|Number|Grid color|.5|
+|gridVisible|Boolean|Grid visibility|true|
+|gridWidth|Number|Grid width|1|
+|labelsCharacterWidth|Number|Labels character with (depending on your font) to calculate the width of Y labels|10|
+|labelsColor|String|Labels color|"#34495e"|
+|labelsCountY|Number|Y labels count|5|
+|labelsFormatX|Function|Custom X labels|x => x|
+|labelsFormatY|Function|Custom Y labels|y => y|
+|labelsHeightX|Number|X labels height (depending on your font)|12|
+|labelsOffsetX|Number|X labels offset|15|
+|labelsOffsetY|Number|Y labels offset|15|
+|labelsStepX|Number|X labels step|1|
+|labelsVisible|Number|Labels visibility|true|
+|pathColor|String|Path color|"#34495e"|
+|pathOpacity|Number|Path opacity|1|
+|pathSmoothing|Number|Between 0 and 1 or null to disable|null|
+|pathVisible|Boolean|Path visibility|false|
+|pathWidth|Number|Path width|1|
+|pointsColor|String|Points color|"#fff"|
+|pointsIsHoverOnZone|Boolean|`pointsOnHover` function callback called on zone hover instead of points hover|false|
+|pointsOnHover|Function|Callback when one point is hovered|(point, event) => {}|
+|pointsRadius|Number|Points radius|4|
+|pointsStrokeColor|String|Points stroke color|"#34495e"|
+|pointsStrokeWidth|Number|Points stroke width|2|
+|pointsVisible|Boolean|Points visibility|true|
+|viewBoxHeight|Number|SVG viewport height|300|
+|viewBoxWidth|Number|SVG viewport width|800|
 
-### Classes
+## Contributing
 
- * `.linechart`
- * `.linechart-withPadding` - if `nolabel` or `nopoint` is false
- * `.linechart_grid` - if `nogrid` is false
- * `.linechart_axis` - if `nogaxis` is false
- * `.linechart_area` - if `noarea` is false
- * `.linechart_path` - if `nopath` is false
- * `.linechart_points` - if `nopoint` is false
- * `.linechart_point` - if `nopoint` is false
- * `.linechart_labels` - if `nolabel` is false
- * `.linechart_xLabels` - if `nolabel` is false
- * `.linechart_yLabels` - if `nolabel` is false
- * `.linechart_label` - if `nolabel` is false
+* ⇄ Pull/Merge requests and ★ Stars are always welcome.
+* For bugs and feature requests, please [create an issue][github-issue].
+* Pull requests must be accompanied by passing automated tests (`npm test`).
 
-## Development
+See [CONTRIBUTING.md](./CONTRIBUTING.md) guidelines
 
-### Clean `lib` folder
+## Changelog
 
-```js
-npm run clean
-```
-
-### Launch demo
-
-```js
-npm run demo
-```
-
-### Build `lib` folder
-
-```js
-npm run build
-```
-
-### Watch `src` folder
-
-```js
-npm run watch
-```
-
-### Lint `src` folder
-
-```js
-npm run build
-```
+See [changelog](./CHANGELOG.md)
 
 ## License
 
-See [MIT](./LICENCE)
+This project is licensed under the MIT License - see the [LICENCE.md](./LICENCE.md) file for details
+
+[npm-badge]: https://img.shields.io/npm/v/react-svg-line-chart.svg?style=flat-square
+[npm]: https://www.npmjs.org/package/react-svg-line-chart
+
+[build-badge]: https://img.shields.io/travis/xuopled/react-svg-line-chart/master.svg?style=flat-square
+[build]: https://travis-ci.org/xuopled/react-svg-line-chart
+
+[codecov-badge]: https://img.shields.io/codecov/c/github/xuopled/react-svg-line-chart.svg?style=flat-square
+[codecov]: https://codecov.io/gh/xuopled/react-svg-line-chart
+
+[module-formats]: https://img.shields.io/badge/module%20formats-umd%2C%20cjs%2C%20esm-green.svg?style=flat-square
+
+[github-page]: https://xuopled.github.io/react-svg-line-chart
+[github-issue]: https://github.com/xuopled/react-svg-line-chart/issues/new

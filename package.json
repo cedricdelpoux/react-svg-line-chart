@@ -1,68 +1,69 @@
 {
   "name": "react-svg-line-chart",
-  "version": "1.0.6",
-  "description": "A lightweight responsive line chart component for React using only SVG",
+  "version": "2.0.0",
+  "author": {
+    "name": "Cédric Delpoux",
+    "email": "xuopled@gmail.com"
+  },
+  "contributors": [
+    "Marek Kawczynski <mkawczynski07@gmail.com> (https://github.com/mkawczynski07)"
+  ],
+  "description":
+    "A lightweight responsive line chart component for React using only SVG",
+  "files": ["es", "lib", "umd"],
+  "homepage": "https://github.com/xuopled/react-svg-line-chart#readme",
+  "keywords": ["react", "line", "chart", "linechart", "responsive", "svg"],
+  "license": "MIT",
+  "main": "lib/index.js",
+  "module": "es/index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/xuopled/react-svg-line-chart.git"
   },
-  "keywords": [
-    "react",
-    "line",
-    "chart",
-    "linechart",
-    "responsive",
-    "svg"
-  ],
-  "author": "Cédric Delpoux <xuopled@gmail.com>",
-  "contributors": "Marek Kawczynski <mkawczynski07@gmail.com> (https://github.com/mkawczynski07)",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/xuopled/react-svg-line-chart/issues"
-  },
-  "homepage": "https://github.com/xuopled/react-svg-line-chart#readme",
-  "main": "lib/index.js",
-  "style": "lib/index.css",
-  "files": [
-    "lib"
-  ],
-  "peerDependencies": {
-    "react": "~15.5.0"
+  "scripts": {
+    "build": "nwb build-react-component",
+    "clean": "nwb clean-module && nwb clean-demo",
+    "deploy": "gh-pages -d demo/dist",
+    "lint": "eslint src demo/src",
+    "precommit": "lint-staged",
+    "prepublish": "yarn run clean && yarn run build",
+    "start": "nwb serve-react-demo --port 1190",
+    "test": "jest --config jest.config.json --colors --no-cache",
+    "test:watch": "yarn test -- --watch"
   },
   "dependencies": {
-    "classnames": "^2.2.5",
-    "prop-types": "^15.5.10"
+    "styled-components": "^2.1.2"
   },
   "devDependencies": {
-    "babel": "^6.3.13",
-    "babel-core": "^6.25.0",
     "babel-eslint": "^7.2.3",
-    "babel-loader": "^7.1.1",
-    "babel-plugin-transform-object-rest-spread": "^6.5.0",
-    "babel-polyfill": "^6.6.1",
-    "babel-preset-es2015": "^6.3.13",
-    "babel-preset-react": "^6.3.13",
-    "babel-preset-stage-0": "^6.5.0",
-    "babel-register": "^6.5.2",
-    "css-loader": "^0.28.0",
-    "eslint": "^3.0.1",
-    "eslint-loader": "^1.4.0",
-    "eslint-plugin-react": "^6.10.3",
-    "extract-text-webpack-plugin": "^2.1.0",
-    "file-loader": "^0.11.2",
-    "node-libs-browser": "^2.0.0",
-    "nwb": "^0.18.8",
-    "path": "^0.12.7",
-    "react": "^0.14 || ^15.5.4",
-    "react-dom": "^0.14 || ^15.5.4",
-    "style-loader": "^0.16.1",
-    "webpack": "^2.4.1"
+    "babel-jest": "^20.0.3",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "enzyme": "^2.9.1",
+    "eslint": "^4.5.0",
+    "eslint-config-prettier": "^2.3.0",
+    "eslint-loader": "^1.9.0",
+    "eslint-plugin-jest": "^20.0.3",
+    "eslint-plugin-prettier": "^2.1.2",
+    "eslint-plugin-react": "^7.3.0",
+    "gh-pages": "^1.0.0",
+    "html-loader": "^0.5.1",
+    "husky": "^0.14.3",
+    "jest": "^20.0.4",
+    "jest-css-modules": "^1.1.0",
+    "lint-staged": "^4.0.2",
+    "markdown-loader": "^2.0.1",
+    "nwb": "^0.18.0",
+    "prettier": "^1.5.3",
+    "prop-types": "^15.6.0",
+    "react": "^15.6.1",
+    "react-demo-page": "^0.3.4",
+    "react-dom": "^15.6.1",
+    "react-test-renderer": "^15.6.1"
   },
-  "scripts": {
-    "clean": "rm -rf lib",
-    "build": "webpack --progress --colors --display-modules",
-    "demo": "nwb react run demo/index.js",
-    "lint": "eslint src/",
-    "prepublish": "npm run clean && npm run build"
+  "peerDependencies": {
+    "react": "^15.0.0 || ^16.0.0",
+    "react-dom": "^15.0.0 || ^16.0.0"
   }
 }

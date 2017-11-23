@@ -1,8 +1,15 @@
+# 2.0.0
+* Updated: Complete rewrite
+* Added: Tests
+* Added: `styled-components` dep
+
 # 1.0.6
+
 * Fixed: `Reference Error`: number is not defined
 * Add: local demo
 
 # 1.0.5
+
 * Fixed: use `PropTypes.shape` and `PropTypes.arrayOf`
 * Fixed: no freeze if all y coords = 0
 
@@ -11,7 +18,7 @@
 * Added: Yarn
 * Added: `noXlabel` props
 * Added: `noYlabel` props
-* Added: `xLabelsStep` props
+* Added: `labelsStepX` props
 * Added: `noXaxis` props
 * Added: `noYaxis` props
 * Added: `noXaxisPoints` props
