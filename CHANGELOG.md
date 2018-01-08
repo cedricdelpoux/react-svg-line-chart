@@ -1,4 +1,9 @@
+# 2.0.1
+
+* Updated: Dependencies
+
 # 2.0.0
+
 * Updated: Complete rewrite
 * Added: Tests
 * Added: `styled-components` dep

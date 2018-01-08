@@ -1,6 +1,6 @@
 {
-  "*.js": [
-    "prettier --no-bracket-spacing --no-semi --trailing-comma=es5 --write",
+  "*.{js,md}": [
+    "prettier --write",
     "git add"
   ]
 }
