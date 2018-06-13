@@ -3,6 +3,7 @@ import ReactSvgLineChart from "../../src"
 
 import demoHtml from "./demo.md"
 import readmeHtml from "../../README.md"
+import Tooltips from "./tooltips.js"
 
 const data = []
 
@@ -52,6 +53,12 @@ const routes = [
       html: demoHtml,
     },
     label: "Demo",
+  },
+  {
+    path: "/tooltip",
+    exact: true,
+    component: <Tooltips data={data} />,
+    label: "Tooltip",
   },
   {
     path: "/readme",

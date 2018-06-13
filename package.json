@@ -70,6 +70,7 @@
     "react": "^15.6.1",
     "react-demo-page": "^0.3.4",
     "react-dom": "^15.6.1",
+    "react-simple-tooltip": "^2.3.1",
     "react-test-renderer": "^15.6.1"
   },
   "peerDependencies": {
