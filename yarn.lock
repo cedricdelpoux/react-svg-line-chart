@@ -6851,9 +6851,9 @@ react-router@^4.2.0:
     prop-types "^15.5.4"
     warning "^3.0.0"
 
-react-simple-tooltip@^2.3.1:
-  version "2.3.1"
-  resolved "https://registry.yarnpkg.com/react-simple-tooltip/-/react-simple-tooltip-2.3.1.tgz#1eade8d16876a08b4feaad6f1d1634ef3af587c6"
+react-simple-tooltip@^2.3.2:
+  version "2.3.2"
+  resolved "https://registry.yarnpkg.com/react-simple-tooltip/-/react-simple-tooltip-2.3.2.tgz#e24bcb6b0a314f5e3b59a5f0cf961f8925b46ef6"
   dependencies:
     styled-components "^2.1.2"
 
