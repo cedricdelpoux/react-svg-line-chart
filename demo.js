@@ -128,20 +128,17 @@ var routes = [{
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-throw new Error("Cannot find module \"react-simple-tooltip/lib/index.css\"");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__("./node_modules/prop-types/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_prop_types__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react__ = __webpack_require__("./node_modules/react/react.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_react_simple_tooltip__ = __webpack_require__("./node_modules/react-simple-tooltip/es/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__src__ = __webpack_require__("./src/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_prop_types__ = __webpack_require__("./node_modules/prop-types/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_prop_types__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react__ = __webpack_require__("./node_modules/react/react.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_simple_tooltip__ = __webpack_require__("./node_modules/react-simple-tooltip/es/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__src__ = __webpack_require__("./src/index.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-
 
 
 
@@ -158,42 +155,50 @@ var WithTooltips = function (_Component) {
     var _this = _possibleConstructorReturn(this, _Component.call(this, props, context));
 
     _this.handlePointHover = function (point, e) {
-      // eslint-disable-next-line
-      console.log("Point:" + point, "Event:", e.target.getBoundingClientRect());
       if (e) {
         _this.setState({
-          tooltipTrigger: e.target
+          tooltipTrigger: e.target.getBoundingClientRect(),
+          point: point
+        });
+      } else {
+        _this.setState({
+          tooltipTrigger: null,
+          point: null
         });
       }
     };
 
     _this.state = {
-      tooltipTrigger: null
+      tooltipTrigger: null,
+      point: null
     };
     return _this;
   }
 
   WithTooltips.prototype.render = function render() {
+    var _state = this.state,
+        tooltipTrigger = _state.tooltipTrigger,
+        point = _state.point;
     var data = this.props.data;
 
-    return __WEBPACK_IMPORTED_MODULE_2_react___default.a.createElement(
+    return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
       "div",
-      null,
-      this.state.tooltipTrigger ? __WEBPACK_IMPORTED_MODULE_2_react___default.a.createElement(
-        __WEBPACK_IMPORTED_MODULE_3_react_simple_tooltip__["a" /* default */],
-        { placement: "top", trigger: this.state.tooltipTrigger },
-        __WEBPACK_IMPORTED_MODULE_2_react___default.a.createElement(
-          "div",
-          null,
-          "react-simple-tooltip"
-        ),
-        __WEBPACK_IMPORTED_MODULE_2_react___default.a.createElement(
-          "div",
-          null,
-          "By xuopled"
-        )
-      ) : null,
-      __WEBPACK_IMPORTED_MODULE_2_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__src__["a" /* default */], {
+      {
+        style: {
+          position: "relative"
+        }
+      },
+      tooltipTrigger ? __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_simple_tooltip__["a" /* default */], {
+        fixed: true,
+        placement: "top",
+        style: {
+          position: "fixed",
+          top: tooltipTrigger.top + "px",
+          left: tooltipTrigger.left + (tooltipTrigger.right - tooltipTrigger.left) / 2 + "px"
+        },
+        content: point && "x:" + point.x + ",y:" + point.y
+      }) : null,
+      __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__src__["a" /* default */], {
         data: data,
         pointsStrokeColor: "#44B39D",
         pathColor: "#44B39D",
@@ -210,10 +215,10 @@ var WithTooltips = function (_Component) {
   };
 
   return WithTooltips;
-}(__WEBPACK_IMPORTED_MODULE_2_react__["Component"]);
+}(__WEBPACK_IMPORTED_MODULE_1_react__["Component"]);
 
 WithTooltips.propTypes = {
-  data: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.array
+  data: __WEBPACK_IMPORTED_MODULE_0_prop_types___default.a.array
 };
 
 /* harmony default export */ __webpack_exports__["a"] = (WithTooltips);
@@ -34580,7 +34585,7 @@ module.exports = {
 		"react": "^15.6.1",
 		"react-demo-page": "^0.3.4",
 		"react-dom": "^15.6.1",
-		"react-simple-tooltip": "^2.3.1",
+		"react-simple-tooltip": "^2.3.2",
 		"react-test-renderer": "^15.6.1"
 	},
 	"peerDependencies": {
