@@ -1,6 +1,6 @@
 {
   "name": "react-svg-line-chart",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "author": {
     "name": "Cédric Delpoux",
     "email": "xuopled@gmail.com"
@@ -8,11 +8,21 @@
   "contributors": [
     "Marek Kawczynski <mkawczynski07@gmail.com> (https://github.com/mkawczynski07)"
   ],
-  "description":
-    "A lightweight responsive line chart component for React using only SVG",
-  "files": ["es", "lib", "umd"],
+  "description": "A lightweight responsive line chart component for React using only SVG",
+  "files": [
+    "es",
+    "lib",
+    "umd"
+  ],
   "homepage": "https://github.com/xuopled/react-svg-line-chart#readme",
-  "keywords": ["react", "line", "chart", "linechart", "responsive", "svg"],
+  "keywords": [
+    "react",
+    "line",
+    "chart",
+    "linechart",
+    "responsive",
+    "svg"
+  ],
   "license": "MIT",
   "main": "lib/index.js",
   "module": "es/index.js",
