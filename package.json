@@ -3,7 +3,7 @@
   "version": "2.0.2",
   "author": {
     "name": "Cédric Delpoux",
-    "email": "xuopled@gmail.com"
+    "email": "cedric.delpoux@gmail.com"
   },
   "contributors": [
     "Marek Kawczynski <mkawczynski07@gmail.com> (https://github.com/mkawczynski07)"
@@ -14,7 +14,7 @@
     "lib",
     "umd"
   ],
-  "homepage": "https://github.com/xuopled/react-svg-line-chart#readme",
+  "homepage": "https://github.com/cedricdelpoux/react-svg-line-chart#readme",
   "keywords": [
     "react",
     "line",
@@ -28,7 +28,7 @@
   "module": "es/index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/xuopled/react-svg-line-chart.git"
+    "url": "git+https://github.com/cedricdelpoux/react-svg-line-chart.git"
   },
   "scripts": {
     "build": "nwb build-react-component",
