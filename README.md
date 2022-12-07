@@ -121,13 +121,13 @@ This project is licensed under the MIT License - see the [LICENCE.md](./LICENCE.
 [npm-badge]: https://img.shields.io/npm/v/react-svg-line-chart.svg?style=flat-square
 [npm]: https://www.npmjs.org/package/react-svg-line-chart
 
-[build-badge]: https://img.shields.io/travis/xuopled/react-svg-line-chart/master.svg?style=flat-square
-[build]: https://travis-ci.org/xuopled/react-svg-line-chart
+[build-badge]: https://img.shields.io/travis/cedricdelpoux/react-svg-line-chart/master.svg?style=flat-square
+[build]: https://travis-ci.org/cedricdelpoux/react-svg-line-chart
 
-[codecov-badge]: https://img.shields.io/codecov/c/github/xuopled/react-svg-line-chart.svg?style=flat-square
-[codecov]: https://codecov.io/gh/xuopled/react-svg-line-chart
+[codecov-badge]: https://img.shields.io/codecov/c/github/cedricdelpoux/react-svg-line-chart.svg?style=flat-square
+[codecov]: https://codecov.io/gh/cedricdelpoux/react-svg-line-chart
 
 [module-formats]: https://img.shields.io/badge/module%20formats-umd%2C%20cjs%2C%20esm-green.svg?style=flat-square
 
-[github-page]: https://xuopled.github.io/react-svg-line-chart
-[github-issue]: https://github.com/xuopled/react-svg-line-chart/issues/new
+[github-page]: https://cedricdelpoux.github.io/react-svg-line-chart
+[github-issue]: https://github.com/cedricdelpoux/react-svg-line-chart/issues/new
